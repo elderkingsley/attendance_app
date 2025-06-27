@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block title %}New Meeting - TEC Attendance Tracker{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-plus me-2"></i>Create New Meeting
+                </h5>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Meeting Name *</label>
+                        <input type="text" class="form-control" id="name" name="name" required 
+                               placeholder="e.g., Sunday Service, Bible Study, Youth Meeting">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="date" class="form-label">Date & Time *</label>
+                        <input type="datetime-local" class="form-control" id="date" name="date" required>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Location</label>
+                        <input type="text" class="form-control" id="location" name="location" 
+                               placeholder="e.g., Main Sanctuary, Fellowship Hall">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" 
+                                  placeholder="Optional description or notes about this meeting"></textarea>
+                    </div>
+                    
+                    <div class="d-flex flex-column flex-sm-row justify-content-between gap-2">
+                        <a href="{{ url_for('index') }}" class="btn btn-secondary order-2 order-sm-1">
+                            <i class="fas fa-arrow-left me-1"></i>Cancel
+                        </a>
+                        <button type="submit" class="btn btn-primary order-1 order-sm-2">
+                            <i class="fas fa-save me-1"></i>Create Meeting
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Set default date to current date and time
+document.addEventListener('DOMContentLoaded', function() {
+    const dateInput = document.getElementById('date');
+    const now = new Date();
+    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+    dateInput.value = now.toISOString().slice(0, 16);
+});
+</script>
+{% endblock %}

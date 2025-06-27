@@ -1,0 +1,452 @@
+/* Custom styles for TEC Attendance Tracker */
+
+:root {
+    --primary-yellow: #ffd700;
+    --primary-black: #000000;
+    --primary-white: #ffffff;
+    --dark-yellow: #e6c200;
+    --light-yellow: #fff9cc;
+    --gray-light: #f8f9fa;
+    --gray-medium: #6c757d;
+}
+
+body {
+    background-color: var(--gray-light);
+    color: var(--primary-black);
+}
+
+.navbar-brand {
+    font-weight: 600;
+    color: var(--primary-black) !important;
+}
+
+.navbar-dark {
+    background-color: var(--primary-yellow) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: var(--primary-black) !important;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: var(--primary-white) !important;
+    background-color: var(--primary-black);
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+}
+
+.navbar-dark .navbar-toggler {
+    border-color: var(--primary-black);
+}
+
+.card {
+    border: 2px solid var(--primary-black);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.15s ease-in-out;
+    background-color: var(--primary-white);
+}
+
+.card:hover {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+    background-color: var(--primary-yellow);
+    border-bottom: 2px solid var(--primary-black);
+    color: var(--primary-black);
+    font-weight: 600;
+}
+
+.list-group-item-action:hover {
+    background-color: var(--light-yellow);
+}
+
+.btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    border-width: 2px;
+}
+
+.btn-primary {
+    background-color: var(--primary-yellow);
+    border-color: var(--primary-black);
+    color: var(--primary-black);
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-black);
+    border-color: var(--primary-black);
+    color: var(--primary-yellow);
+}
+
+.btn-outline-primary {
+    border-color: var(--primary-yellow);
+    color: var(--primary-black);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-yellow);
+    border-color: var(--primary-black);
+    color: var(--primary-black);
+}
+
+.btn-secondary {
+    background-color: var(--gray-medium);
+    border-color: var(--primary-black);
+    color: var(--primary-white);
+}
+
+.btn-secondary:hover {
+    background-color: var(--primary-black);
+    border-color: var(--primary-black);
+    color: var(--primary-yellow);
+}
+
+.btn-outline-secondary {
+    border-color: var(--gray-medium);
+    color: var(--primary-black);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--gray-medium);
+    border-color: var(--primary-black);
+    color: var(--primary-white);
+}
+
+.btn-outline-success {
+    border-color: var(--dark-yellow);
+    color: var(--primary-black);
+}
+
+.btn-outline-success:hover {
+    background-color: var(--dark-yellow);
+    border-color: var(--primary-black);
+    color: var(--primary-black);
+}
+
+.btn-outline-info {
+    border-color: var(--primary-black);
+    color: var(--primary-black);
+}
+
+.btn-outline-info:hover {
+    background-color: var(--primary-black);
+    border-color: var(--primary-black);
+    color: var(--primary-yellow);
+}
+
+.form-control:focus {
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+}
+
+/* Statistics cards */
+.stats-card {
+    background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--dark-yellow) 100%);
+    color: var(--primary-black);
+    border-radius: 1rem;
+    border: 2px solid var(--primary-black);
+}
+
+.stats-number {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+/* Attendance form styling */
+.attendance-form {
+    background-color: var(--primary-white);
+    border-radius: 0.5rem;
+    padding: 1.5rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2);
+    border: 2px solid var(--primary-black);
+}
+
+.attendance-input {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+/* Table styling */
+.table th {
+    border-top: none;
+    font-weight: 600;
+    color: var(--primary-black);
+    background-color: var(--primary-yellow);
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) > td {
+    background-color: var(--light-yellow);
+}
+
+/* Loading spinner */
+.loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.375rem;
+}
+
+/* Mobile-first responsive design */
+@media (max-width: 768px) {
+    .container {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .card-body {
+        padding: 0.75rem;
+    }
+
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 0.75rem;
+    }
+
+    .btn-sm {
+        font-size: 0.75rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    /* Mobile navigation */
+    .navbar-brand {
+        font-size: 1.1rem;
+    }
+
+    .navbar-nav .nav-link {
+        padding: 0.75rem 1rem;
+        text-align: center;
+    }
+
+    /* Mobile forms */
+    .form-control {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 0.75rem;
+    }
+
+    .form-label {
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+    }
+
+    /* Mobile tables */
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.5rem 0.25rem;
+        vertical-align: middle;
+    }
+
+    /* Mobile cards */
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    .card-header {
+        padding: 0.75rem;
+        font-size: 0.95rem;
+    }
+
+    /* Mobile attendance form */
+    .attendance-form {
+        padding: 1rem;
+    }
+
+    .attendance-input {
+        font-size: 1.2rem;
+        padding: 0.75rem;
+        text-align: center;
+    }
+
+    /* Mobile statistics */
+    .stats-number {
+        font-size: 1.5rem;
+    }
+
+    /* Mobile spacing */
+    .mt-4 {
+        margin-top: 1.5rem !important;
+    }
+
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+
+    /* Hide less important elements on mobile */
+    .d-none-mobile {
+        display: none !important;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Extra small devices */
+    .container {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .card-body {
+        padding: 0.5rem;
+    }
+
+    .btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+    }
+
+    .btn:last-child {
+        margin-bottom: 0;
+    }
+
+    /* Stack form elements vertically */
+    .row > .col-4,
+    .row > .col-6,
+    .row > .col-md-6 {
+        margin-bottom: 1rem;
+    }
+
+    /* Mobile table adjustments */
+    .table {
+        font-size: 0.75rem;
+    }
+
+    .table th,
+    .table td {
+        padding: 0.25rem;
+    }
+
+    /* Compact navigation */
+    .navbar-brand {
+        font-size: 1rem;
+    }
+
+    /* Mobile footer */
+    footer {
+        padding: 1rem 0 !important;
+        text-align: center;
+    }
+
+    footer p {
+        font-size: 0.875rem;
+    }
+}
+
+/* Animation for new records */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.new-record {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Touch-friendly improvements */
+.btn, .form-control, .list-group-item-action {
+    min-height: 44px; /* Apple's recommended minimum touch target */
+}
+
+.navbar-toggler {
+    padding: 0.5rem;
+    min-height: 44px;
+    min-width: 44px;
+}
+
+/* Improved touch targets for mobile */
+@media (max-width: 768px) {
+    .btn {
+        min-height: 48px;
+        padding: 0.75rem 1rem;
+    }
+
+    .form-control {
+        min-height: 48px;
+        padding: 0.75rem;
+    }
+
+    .list-group-item-action {
+        min-height: 60px;
+        padding: 1rem;
+    }
+
+    .nav-link {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+}
+
+/* Custom colors for different categories */
+.men-color { color: var(--primary-black); font-weight: 600; }
+.women-color { color: var(--gray-medium); font-weight: 600; }
+.children-color { color: var(--dark-yellow); font-weight: 600; }
+.total-color { color: var(--primary-black); font-weight: 700; }
+
+/* Text color utilities */
+.text-primary { color: var(--primary-black) !important; }
+.text-success { color: var(--dark-yellow) !important; }
+.text-warning { color: var(--primary-yellow) !important; }
+.text-info { color: var(--gray-medium) !important; }
+
+/* Alert styling */
+.alert {
+    border: 2px solid var(--primary-black);
+    border-radius: 0.5rem;
+}
+
+.alert-success {
+    background-color: var(--light-yellow);
+    border-color: var(--dark-yellow);
+    color: var(--primary-black);
+}
+
+.alert-danger {
+    background-color: #ffe6e6;
+    border-color: var(--primary-black);
+    color: var(--primary-black);
+}
+
+.alert-info {
+    background-color: #f0f0f0;
+    border-color: var(--gray-medium);
+    color: var(--primary-black);
+}
+
+/* Footer styling */
+footer {
+    margin-top: auto;
+    background-color: var(--primary-black) !important;
+    color: var(--primary-white);
+}
+
+footer .text-muted {
+    color: var(--primary-white) !important;
+}
+
+/* Print styles */
+@media print {
+    .navbar, .btn, footer {
+        display: none !important;
+    }
+    
+    .card {
+        border: 1px solid #dee2e6 !important;
+        box-shadow: none !important;
+    }
+}
