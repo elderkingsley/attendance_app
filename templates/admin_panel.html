@@ -1,0 +1,194 @@
+{% extends "base.html" %}
+
+{% block title %}Admin Panel - TEC Attendance Tracker{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2>
+        <i class="fas fa-users-cog me-2"></i>Admin Panel
+    </h2>
+    <a href="{{ url_for('admin_create_user') }}" class="btn btn-primary">
+        <i class="fas fa-user-plus me-1"></i>Add New User
+    </a>
+</div>
+
+<!-- Statistics Cards -->
+<div class="row mb-4">
+    <div class="col-md-4 mb-3">
+        <div class="card stats-card">
+            <div class="card-body text-center">
+                <h3 class="stats-number">{{ users|length }}</h3>
+                <p class="mb-0">Total Users</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card stats-card">
+            <div class="card-body text-center">
+                <h3 class="stats-number">{{ total_meetings }}</h3>
+                <p class="mb-0">Total Meetings</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+        <div class="card stats-card">
+            <div class="card-body text-center">
+                <h3 class="stats-number">{{ total_attendance_records }}</h3>
+                <p class="mb-0">Attendance Records</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- User Management -->
+<div class="card">
+    <div class="card-header">
+        <h5 class="mb-0">
+            <i class="fas fa-users me-2"></i>User Management
+        </h5>
+    </div>
+    <div class="card-body">
+        {% if users %}
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Username</th>
+                            <th>Email</th>
+                            <th>Role</th>
+                            <th>Created</th>
+                            <th>Last Login</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>
+                                    <strong>{{ user.username }}</strong>
+                                    {% if user.id == current_user.id %}
+                                        <span class="badge bg-info ms-1">You</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.email }}</td>
+                                <td>
+                                    {% if user.is_admin %}
+                                        <span class="badge bg-warning text-dark">
+                                            <i class="fas fa-crown me-1"></i>Admin
+                                        </span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">User</span>
+                                    {% endif %}
+                                </td>
+                                <td>{{ user.created_at.strftime('%m/%d/%Y') }}</td>
+                                <td>
+                                    {% if user.last_login %}
+                                        {{ user.last_login.strftime('%m/%d/%Y %I:%M %p') }}
+                                    {% else %}
+                                        <span class="text-muted">Never</span>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <div class="btn-group btn-group-sm" role="group">
+                                        {% if user.id != current_user.id %}
+                                            <!-- Toggle Admin Status -->
+                                            <form method="POST" action="{{ url_for('admin_toggle_user_admin', user_id=user.id) }}" class="d-inline">
+                                                <button type="submit" class="btn btn-outline-warning" 
+                                                        title="{% if user.is_admin %}Remove Admin{% else %}Make Admin{% endif %}"
+                                                        onclick="return confirm('Are you sure you want to {% if user.is_admin %}remove admin privileges from{% else %}grant admin privileges to{% endif %} {{ user.username }}?')">
+                                                    <i class="fas fa-{% if user.is_admin %}user-minus{% else %}user-shield{% endif %}"></i>
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                        
+                                        <!-- Reset Password -->
+                                        <a href="{{ url_for('admin_reset_password', user_id=user.id) }}" 
+                                           class="btn btn-outline-info" title="Reset Password">
+                                            <i class="fas fa-key"></i>
+                                        </a>
+                                        
+                                        {% if user.id != current_user.id %}
+                                            <!-- Delete User -->
+                                            <form method="POST" action="{{ url_for('admin_delete_user', user_id=user.id) }}" class="d-inline">
+                                                <button type="submit" class="btn btn-outline-danger" 
+                                                        title="Delete User"
+                                                        onclick="return confirm('Are you sure you want to delete user {{ user.username }}? This action cannot be undone.')">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </form>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% else %}
+            <div class="text-center py-4">
+                <i class="fas fa-users fa-3x text-muted mb-3"></i>
+                <h5 class="text-muted">No users found</h5>
+                <p class="text-muted">Start by creating the first user account.</p>
+                <a href="{{ url_for('admin_create_user') }}" class="btn btn-primary">
+                    <i class="fas fa-user-plus me-1"></i>Create First User
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- Admin Actions -->
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-tools me-2"></i>Quick Actions
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="d-grid gap-2">
+                    <a href="{{ url_for('admin_create_user') }}" class="btn btn-outline-primary">
+                        <i class="fas fa-user-plus me-1"></i>Add New User
+                    </a>
+                    <a href="{{ url_for('meetings') }}" class="btn btn-outline-secondary">
+                        <i class="fas fa-calendar me-1"></i>Manage Meetings
+                    </a>
+                    <a href="{{ url_for('export_all_data') }}" class="btn btn-outline-info">
+                        <i class="fas fa-download me-1"></i>Export All Data
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="fas fa-info-circle me-2"></i>Admin Guidelines
+                </h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Only admins can create new user accounts
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        At least one admin must always exist
+                    </li>
+                    <li class="mb-2">
+                        <i class="fas fa-check text-success me-2"></i>
+                        You cannot delete your own account
+                    </li>
+                    <li class="mb-0">
+                        <i class="fas fa-check text-success me-2"></i>
+                        Password resets are immediate and secure
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

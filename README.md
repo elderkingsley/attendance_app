@@ -4,11 +4,14 @@ A web-based application for collecting and tracking attendance at meetings, spec
 
 ## Features
 
-- **Meeting Management**: Create and manage different meetings/events
-- **Attendance Recording**: Record attendance counts for men, women, and children
-- **Historical Data**: View attendance history and statistics
-- **Responsive Design**: Works on desktop and mobile devices
-- **Real-time Calculations**: Automatic total calculations and statistics
+- **🔐 User Authentication**: Secure login system with username/password
+- **👥 Admin-Controlled User Management**: Only administrators can create and manage user accounts
+- **📅 Meeting Management**: Create and manage different meetings/events
+- **📊 Attendance Recording**: Record attendance counts for men, women, and children
+- **📈 Historical Data**: View attendance history and statistics
+- **📱 Responsive Design**: Works on desktop and mobile devices
+- **⚡ Real-time Calculations**: Automatic total calculations and statistics
+- **📤 Data Export**: Export attendance data to CSV format
 
 ## Technology Stack
 
@@ -36,6 +39,27 @@ A web-based application for collecting and tracking attendance at meetings, spec
 
 4. **Open in browser**
    Navigate to `http://127.0.0.1:5000`
+
+5. **Create initial admin account**
+   - Run `python create_admin.py` to create the first administrator
+   - Or if users already exist, the first user will be promoted to admin
+
+## Authentication
+
+### First Time Setup
+1. Run `python create_admin.py` to create the initial admin account
+2. Navigate to `http://127.0.0.1:5000`
+3. Login with the admin credentials
+4. Use the Admin Panel to create additional user accounts
+
+### Login Credentials
+- **Username**: Your chosen username
+- **Password**: Your chosen password
+- **Remember Me**: Optional checkbox to stay logged in
+
+### User Roles
+- **Admin**: Can access all features, manage users, and access the admin panel
+- **Regular User**: Can access all attendance tracking features (meetings, recording, statistics, export)
 
 ## Usage
 

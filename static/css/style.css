@@ -428,6 +428,50 @@ body {
     color: var(--primary-black);
 }
 
+/* Authentication pages styling */
+.auth-page {
+    background: linear-gradient(135deg, var(--light-yellow) 0%, var(--primary-white) 100%);
+    min-height: 100vh;
+}
+
+.auth-card {
+    border: 3px solid var(--primary-black);
+    border-radius: 1rem;
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.auth-card .card-header {
+    background: linear-gradient(135deg, var(--primary-yellow) 0%, var(--dark-yellow) 100%);
+    border-bottom: 3px solid var(--primary-black);
+    border-radius: 1rem 1rem 0 0;
+}
+
+.auth-card .card-footer {
+    background-color: var(--gray-light);
+    border-top: 2px solid var(--primary-black);
+    border-radius: 0 0 1rem 1rem;
+}
+
+/* Dropdown menu styling */
+.dropdown-menu {
+    border: 2px solid var(--primary-black);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-item {
+    color: var(--primary-black);
+}
+
+.dropdown-item:hover {
+    background-color: var(--light-yellow);
+    color: var(--primary-black);
+}
+
+.dropdown-divider {
+    border-color: var(--primary-black);
+}
+
 /* Footer styling */
 footer {
     margin-top: auto;
